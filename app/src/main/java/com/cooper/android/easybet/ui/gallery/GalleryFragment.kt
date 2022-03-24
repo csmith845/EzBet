@@ -8,6 +8,19 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cooper.android.easybet.databinding.FragmentGalleryBinding
+class Wallet{
+    private var money = 50
+
+    fun withdraw(amount: Int){
+        money -= amount
+    }
+    fun credit(amount: Int){
+        money += amount
+    }
+    fun balance(): Int {
+        return money
+    }
+}
 
 class GalleryFragment : Fragment() {
 
@@ -35,6 +48,16 @@ class GalleryFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        super.onResume()
+        val galleryViewModel =
+            ViewModelProvider(this).get(GalleryViewModel::class.java)
+        val textView: TextView = binding.textGallery
+        galleryViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
+
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
