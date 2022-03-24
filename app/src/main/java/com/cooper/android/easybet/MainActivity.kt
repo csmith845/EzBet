@@ -1,5 +1,6 @@
 package com.cooper.android.easybet
 
+import android.app.Application
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -12,6 +13,19 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.cooper.android.easybet.databinding.ActivityMainBinding
+
+object Wallet{
+    private var money = 50
+    fun withdraw(amount: Int){
+        money -= amount
+    }
+    fun credit(amount: Int){
+        money += amount
+    }
+    fun balance(): Int {
+        return money
+    }
+}
 
 class MainActivity : AppCompatActivity() {
 

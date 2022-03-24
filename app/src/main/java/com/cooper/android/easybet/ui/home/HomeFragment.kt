@@ -11,8 +11,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cooper.android.easybet.MainActivity
+import com.cooper.android.easybet.Wallet
 import com.cooper.android.easybet.databinding.FragmentHomeBinding
-import com.cooper.android.easybet.ui.gallery.Wallet
+
 
 class HomeFragment : Fragment() {
 
@@ -46,12 +47,14 @@ class HomeFragment : Fragment() {
         }
         total = binding.total
         entry = binding.betAmount
-        val money = Wallet()
+
 
         textView.setOnClickListener{
             string = entry.text.toString()
             val bet = string.toInt()
-            money.withdraw(bet)
+            Wallet.withdraw(bet)
+
+            println(Wallet.balance())
             total.text = string
         }
         return root
