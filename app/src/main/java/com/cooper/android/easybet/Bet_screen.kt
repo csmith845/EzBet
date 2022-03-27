@@ -27,6 +27,7 @@ class Bet : AppCompatActivity() {
             if(string != ""){
                 val bet = string.toInt()
                 Wallet.withdraw(bet)
+                string = "$$string"
                 total.setText(string)
             }
 
