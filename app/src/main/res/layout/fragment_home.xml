@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/GridLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
-
+    android:columnCount="1"
+    android:rowCount="4"
+    android:orientation="horizontal"
+    tools:context=".ui.home.HomeFragment">>
 
     <Button
-        android:id="@+id/Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/pubBet1"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="NFL" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/pubBet2"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="FIFA" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/pubBet3"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="MLB" />
+
+    <Button
+        android:id="@+id/pubBet4"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="World Events" />
+</GridLayout>
+

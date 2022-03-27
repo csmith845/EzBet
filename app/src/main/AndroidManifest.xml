@@ -12,7 +12,19 @@
         <activity
             android:name=".Bet"
             android:exported="false"
-            android:label="@string/bet_screen" />
+            />
+        <activity
+            android:name=".ui.home.pubBet4"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.pubBet3"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.pubBet2"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.pubBet1"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
