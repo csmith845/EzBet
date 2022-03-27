@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.cooper.android.easybet.Bet
 import com.cooper.android.easybet.MainActivity
 import com.cooper.android.easybet.Wallet
 import com.cooper.android.easybet.databinding.FragmentHomeBinding
@@ -26,7 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var total: TextView
     private lateinit var string: String
     private lateinit var entry: EditText
-
+    private lateinit var newView: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,27 +36,16 @@ class HomeFragment : Fragment() {
     ): View {
 
 
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.betButton
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        total = binding.total
-        entry = binding.betAmount
 
+        newView = binding.Button
 
-        textView.setOnClickListener{
-            string = entry.text.toString()
-            val bet = string.toInt()
-            Wallet.withdraw(bet)
-
-            println(Wallet.balance())
-            total.text = string
+        newView.setOnClickListener{
+            val intent = Intent(activity, Bet::class.java)
+            startActivity(intent)
         }
         return root
     }
