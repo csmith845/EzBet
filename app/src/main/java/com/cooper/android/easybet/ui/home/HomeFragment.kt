@@ -24,9 +24,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var total: TextView
-    private lateinit var string: String
-    private lateinit var entry: EditText
+
     private lateinit var newView: Button
 
     override fun onCreateView(
