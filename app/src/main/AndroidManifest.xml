@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyBet">
         <activity
+            android:name=".Bet"
+            android:exported="false"
+            />
+        <activity
             android:name=".ui.home.pubBet4"
             android:exported="false" />
         <activity
