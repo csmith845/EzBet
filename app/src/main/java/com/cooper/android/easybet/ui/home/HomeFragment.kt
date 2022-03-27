@@ -1,5 +1,6 @@
 package com.cooper.android.easybet.ui.home
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,10 +23,10 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    private lateinit var total: TextView
-    private lateinit var string: String
-    private lateinit var entry: EditText
+    private lateinit var pub1: Button
+    private lateinit var pub2: Button
+    private lateinit var pub3: Button
+    private lateinit var pub4: Button
 
 
     override fun onCreateView(
@@ -41,22 +42,31 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.betButton
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        pub1 = binding.pubBet1
+        pub2 = binding.pubBet2
+        pub3 = binding.pubBet3
+        pub4 = binding.pubBet4
+
+
+        pub1.setOnClickListener{
+            val intent = Intent(activity , pubBet1::class.java)
+            startActivity(intent)
         }
-        total = binding.total
-        entry = binding.betAmount
 
-
-        textView.setOnClickListener{
-            string = entry.text.toString()
-            val bet = string.toInt()
-            Wallet.withdraw(bet)
-
-            println(Wallet.balance())
-            total.text = string
+        pub2.setOnClickListener{
+            val intent = Intent(activity, pubBet2::class.java)
+            startActivity(intent)
         }
+
+        pub3.setOnClickListener{
+            val intent = Intent(activity, pubBet3::class.java)
+            startActivity(intent)
+        }
+        pub4.setOnClickListener {
+            val intent = Intent(activity, pubBet4::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 
