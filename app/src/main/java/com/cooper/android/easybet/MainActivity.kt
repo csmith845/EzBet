@@ -1,5 +1,6 @@
 package com.cooper.android.easybet
 
+import android.app.Application
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -13,6 +14,19 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.cooper.android.easybet.databinding.ActivityMainBinding
 
+object Wallet{
+    private var money = 50
+    fun withdraw(amount: Int){
+        money -= amount
+    }
+    fun credit(amount: Int){
+        money += amount
+    }
+    fun balance(): Int {
+        return money
+    }
+}
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -20,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -39,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_wallet, R.id.nav_room
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
