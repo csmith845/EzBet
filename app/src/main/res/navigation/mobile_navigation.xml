@@ -22,4 +22,10 @@
         android:name="com.cooper.android.easybet.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id= "@+id/bet_list"
+        android:name= "com.cooper.android.easybet.BetListFragment"
+        android:label="Bet list"
+        tools:layout="@layout/bet_list_layout"/>
 </navigation>
