@@ -24,8 +24,10 @@ class Bet : AppCompatActivity() {
 
         bet_button.setOnClickListener{
             string = entry.text.toString()
-            if(string != ""){
-                val bet = string.toInt()
+            val bet = string.toInt()
+            val currentBal = Wallet.balance()
+            if(string != "" &&  currentBal - bet >= 0 ){
+
                 Wallet.withdraw(bet)
                 string = "$$string"
                 total.setText(string)

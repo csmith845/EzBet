@@ -13,6 +13,32 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.cooper.android.easybet.databinding.ActivityMainBinding
+import java.util.*
+
+object BetList{
+
+
+    var idList = mutableListOf<UUID>()
+    var titleList = mutableListOf<String>()
+    var potList = mutableListOf<Int>()
+
+    fun newBet(title: String, pot: Int) {
+        val id: UUID = UUID.randomUUID()
+        idList.add(id)
+        titleList.add(title)
+        potList.add(pot)
+    }
+
+    fun getPot(id: UUID): Int{
+        val i = idList.indexOf(id)
+        return potList[i]
+    }
+    fun getTitle(id: UUID): String {
+        val i = idList.indexOf(id)
+        return titleList[i]
+    }
+
+}
 
 object Wallet{
     private var money = 50
