@@ -7,30 +7,8 @@
     android:columnCount="1"
     android:rowCount="4"
     android:orientation="horizontal"
-    tools:context=".ui.home.HomeFragment">>
+    tools:context=".ui.home.HomeFragment">
 
-    <Button
-        android:id="@+id/pubBet1"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:text="NFL" />
 
-    <Button
-        android:id="@+id/pubBet2"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:text="FIFA" />
-
-    <Button
-        android:id="@+id/pubBet3"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:text="MLB" />
-
-    <Button
-        android:id="@+id/pubBet4"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:text="World Events" />
 </GridLayout>
 
