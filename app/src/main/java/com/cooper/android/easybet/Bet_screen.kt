@@ -32,8 +32,6 @@ class Bet : AppCompatActivity() {
                 string = "$$string"
                 total.setText(string)
             }
-
-
         }
     }
 

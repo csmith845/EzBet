@@ -23,4 +23,5 @@
     <string name="bet">Bet</string>
     <string name ="condition">Enter winning condition</string>
     <string name="bet_list">Bet List</string>
+    <string name="email">Email</string>
 </resources>

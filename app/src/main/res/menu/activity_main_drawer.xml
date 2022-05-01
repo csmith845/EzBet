@@ -20,5 +20,9 @@
             android:id="@+id/bet_list"
             android:icon= "@drawable/rectangle"
             android:title="@string/bet_list"/>
+        <item
+            android:id="@+id/account"
+            android:icon="@drawable/rectangle"
+            android:title= "Account"/>
     </group>
 </menu>

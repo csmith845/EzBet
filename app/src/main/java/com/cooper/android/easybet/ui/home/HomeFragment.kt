@@ -40,32 +40,7 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-/*
-        pub1 = binding.pubBet1
-        pub2 = binding.pubBet2
-        pub3 = binding.pubBet3
-        pub4 = binding.pubBet4
 
-
-        pub1.setOnClickListener{
-            val intent = Intent(activity , Bet::class.java)
-            startActivity(intent)
-        }
-
-        pub2.setOnClickListener{
-            val intent = Intent(activity, Bet::class.java)
-            startActivity(intent)
-        }
-
-        pub3.setOnClickListener{
-            val intent = Intent(activity, Bet::class.java)
-            startActivity(intent)
-        }
-        pub4.setOnClickListener {
-            val intent = Intent(activity, Bet::class.java)
-            startActivity(intent)
-        }
-*/
         return root
 
 

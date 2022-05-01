@@ -28,4 +28,9 @@
         android:name= "com.cooper.android.easybet.BetListFragment"
         android:label="Bet list"
         tools:layout="@layout/bet_list_layout"/>
+    <activity
+        android:id="@+id/account"
+        android:name="com.cooper.android.easybet.Account"
+        android:label="account"
+        tools:layout="@layout/account_layout"/>
 </navigation>
