@@ -24,4 +24,8 @@
     <string name ="condition">Enter winning condition</string>
     <string name="bet_list">Bet List</string>
     <string name="email">Email</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="account">Account</string>
+    <string name="friends_list">Friends List</string>
+    <string name="enter_email_address">Enter email address</string>
 </resources>

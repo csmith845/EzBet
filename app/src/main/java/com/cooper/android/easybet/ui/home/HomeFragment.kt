@@ -13,8 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cooper.android.easybet.Bet
 import com.cooper.android.easybet.MainActivity
+import com.cooper.android.easybet.R
 import com.cooper.android.easybet.Wallet
 import com.cooper.android.easybet.databinding.FragmentHomeBinding
+import org.w3c.dom.Text
 
 
 class HomeFragment : Fragment() {
@@ -24,10 +26,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var pub1: Button
-    private lateinit var pub2: Button
-    private lateinit var pub3: Button
-    private lateinit var pub4: Button
+    private lateinit var username: TextView
 
 
     override fun onCreateView(
@@ -37,10 +36,11 @@ class HomeFragment : Fragment() {
     ): View {
 
 
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        val nav = inflater.inflate(R.layout.nav_header_main, container, false)
+        username = nav.findViewById(R.id.username_text)
+        username.setText("test")
         return root
 
 

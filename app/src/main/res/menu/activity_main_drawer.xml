@@ -23,6 +23,10 @@
         <item
             android:id="@+id/account"
             android:icon="@drawable/rectangle"
-            android:title= "Account"/>
+            android:title= "@string/account"/>
+        <item
+            android:id="@+id/friend_list"
+            android:icon="@drawable/rectangle"
+            android:title= "@string/friends_list"/>
     </group>
 </menu>

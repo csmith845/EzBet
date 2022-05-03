@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyBet">
-        <activity android:name=".Account"/>
+
         <activity android:name=".SignIn"/>
         <activity
             android:name=".Bet"

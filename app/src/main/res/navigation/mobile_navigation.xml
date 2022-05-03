@@ -28,9 +28,14 @@
         android:name= "com.cooper.android.easybet.BetListFragment"
         android:label="Bet list"
         tools:layout="@layout/bet_list_layout"/>
-    <activity
+    <fragment
         android:id="@+id/account"
         android:name="com.cooper.android.easybet.Account"
         android:label="account"
         tools:layout="@layout/account_layout"/>
+    <fragment
+        android:id="@+id/friend_list"
+        android:name = "com.cooper.android.easybet.FriendsList"
+        android:label="@string/friends_list"
+        tools:layout="@layout/friends_list"/>
 </navigation>

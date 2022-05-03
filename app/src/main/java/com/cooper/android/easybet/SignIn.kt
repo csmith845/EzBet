@@ -21,12 +21,13 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
-private lateinit var signIn: GoogleSignInClient
-private lateinit var auth: FirebaseAuth
-private lateinit var sign_in_button: com.google.android.gms.common.SignInButton
 private const val RC_SIGN_IN = 100
 
 class SignIn : AppCompatActivity() {
+    private lateinit var signIn: GoogleSignInClient
+    private lateinit var auth: FirebaseAuth
+    private lateinit var sign_in_button: com.google.android.gms.common.SignInButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,5 +96,6 @@ class SignIn : AppCompatActivity() {
 
     private fun writeNewUser(uid: String, email: String) {
         database.child("users").child(uid).child("email").setValue(email)
+        database.child("users").child(uid).child("wallet").setValue(0)
     }
 }

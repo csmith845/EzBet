@@ -54,6 +54,7 @@ class SlideshowFragment : Fragment() {
                 database.child("Room").child(id.toString()).child("title").setValue(conditionString)
                 database.child("Room").child(id.toString()).child("pot").setValue(potString)
                 database.child("Room").child(id.toString()).child("UserID").setValue(userID)
+                database.child("users").child(userID).child("rooms").child(id.toString()).setValue(id.toString())
 
                 BetList.newBet(id, conditionString, potInt)
         }
