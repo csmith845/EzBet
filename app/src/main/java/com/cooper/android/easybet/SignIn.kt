@@ -6,6 +6,7 @@ import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.cooper.android.easybet.BetList.database
 import com.cooper.android.easybet.databinding.ActivityMainBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -15,6 +16,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
@@ -77,6 +80,7 @@ class SignIn : AppCompatActivity() {
 
                 if(authResult.additionalUserInfo!!.isNewUser){
                     Toast.makeText(this, "Account Created \n$email", Toast.LENGTH_SHORT).show()
+                    writeNewUser(uid, email.toString())
                 }
                 else{
                     Toast.makeText(this, "Logged in  \n$email", Toast.LENGTH_SHORT).show()
@@ -87,5 +91,9 @@ class SignIn : AppCompatActivity() {
             .addOnFailureListener{e ->
                 Toast.makeText(this, "Login failed due to ${e.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun writeNewUser(uid: String, email: String) {
+        database.child("users").child(uid).child("email").setValue(email)
     }
 }

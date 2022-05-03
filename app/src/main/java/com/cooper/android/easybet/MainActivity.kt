@@ -3,6 +3,7 @@ package com.cooper.android.easybet
 import android.app.Application
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -17,20 +18,25 @@ import com.cooper.android.easybet.databinding.ActivityMainBinding
 import com.cooper.android.easybet.databinding.SignInLayoutBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
+
 object BetList{
-
-
+    var database = Firebase.database.reference
     var idList = mutableListOf<UUID>()
     var titleList = mutableListOf<String>()
     var potList = mutableListOf<Int>()
 
-    fun newBet(title: String, pot: Int) {
-        val id: UUID = UUID.randomUUID()
+
+    fun newBet(id: UUID, title: String, pot: Int) {
+
         idList.add(id)
         titleList.add(title)
         potList.add(pot)
+
     }
 
     fun getPot(id: UUID): Int{
