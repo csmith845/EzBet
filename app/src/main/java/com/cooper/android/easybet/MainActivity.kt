@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WalletRepository.getBal()
 
         auth = FirebaseAuth.getInstance()
         if(!checkUser()){
