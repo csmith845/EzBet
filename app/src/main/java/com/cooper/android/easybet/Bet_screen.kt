@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.cooper.android.easybet.ui.WalletRepository
 
 class Bet : AppCompatActivity() {
     private lateinit var total: TextView
@@ -25,13 +26,8 @@ class Bet : AppCompatActivity() {
         bet_button.setOnClickListener{
             string = entry.text.toString()
             val bet = string.toInt()
-            val currentBal = Wallet.balance()
-            if(string != "" &&  currentBal - bet >= 0 ){
 
-                Wallet.withdraw(bet)
-                string = "$$string"
-                total.setText(string)
-            }
+
         }
     }
 

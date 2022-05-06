@@ -96,6 +96,6 @@ class SignIn : AppCompatActivity() {
 
     private fun writeNewUser(uid: String, email: String) {
         database.child("users").child(uid).child("email").setValue(email)
-        database.child("users").child(uid).child("wallet").setValue(0)
+        database.child("users").child(uid).child("wallet").setValue(100)
     }
 }

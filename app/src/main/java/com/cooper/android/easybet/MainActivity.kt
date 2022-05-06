@@ -22,6 +22,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.*
+import com.cooper.android.easybet.ui.WalletRepository
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
+import kotlin.properties.Delegates
 
 
 object BetList{
@@ -50,18 +54,7 @@ object BetList{
 
 }
 
-object Wallet{
-    private var money = 50
-    fun withdraw(amount: Int){
-        money -= amount
-    }
-    fun credit(amount: Int){
-        money += amount
-    }
-    fun balance(): Int {
-        return money
-    }
-}
+
 
 class MainActivity : AppCompatActivity() {
 

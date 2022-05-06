@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cooper.android.easybet.databinding.FragmentGalleryBinding
+import com.cooper.android.easybet.ui.WalletRepository
 
 
 class GalleryFragment : Fragment() {

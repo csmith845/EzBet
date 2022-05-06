@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "196590227070",
+    "firebase_url": "https://easybet-d5d2e-default-rtdb.firebaseio.com",
     "project_id": "easybet-d5d2e",
     "storage_bucket": "easybet-d5d2e.appspot.com"
   },
@@ -13,6 +14,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "196590227070-h99n904bb66g67ane5odmmtk56hmjur2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cooper.android.easybet",
+            "certificate_hash": "d996fc0440a944535df79692df34c08a7afdeefe"
+          }
+        },
+        {
+          "client_id": "196590227070-kubla6lr74fcmarn3ioarme3ubbllql3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cooper.android.easybet",
+            "certificate_hash": "26e394ea0e477f0d65b38b8bb008baa3feb814ce"
+          }
+        },
         {
           "client_id": "196590227070-p84dr0npru1ap57lb6pj3up3svcavqrb.apps.googleusercontent.com",
           "client_type": 3

@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.cooper.android.easybet.Bet
 import com.cooper.android.easybet.MainActivity
 import com.cooper.android.easybet.R
-import com.cooper.android.easybet.Wallet
 import com.cooper.android.easybet.databinding.FragmentHomeBinding
 import org.w3c.dom.Text
 
