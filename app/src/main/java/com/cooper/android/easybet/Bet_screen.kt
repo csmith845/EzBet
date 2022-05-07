@@ -23,15 +23,7 @@ class Bet : AppCompatActivity() {
         entry = findViewById(R.id.bet_amount)
 
         bet_button.setOnClickListener{
-            string = entry.text.toString()
-            val bet = string.toInt()
-            val currentBal = Wallet.balance()
-            if(string != "" &&  currentBal - bet >= 0 ){
 
-                Wallet.withdraw(bet)
-                string = "$$string"
-                total.setText(string)
-            }
         }
     }
 
