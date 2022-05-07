@@ -1,7 +1,9 @@
 package com.cooper.android.easybet
 
 import android.app.Application
+import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -13,6 +15,40 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.cooper.android.easybet.databinding.ActivityMainBinding
+import com.cooper.android.easybet.databinding.SignInLayoutBinding
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.util.*
+
+
+object BetList{
+    var database = Firebase.database.reference
+    var idList = mutableListOf<UUID>()
+    var titleList = mutableListOf<String>()
+    var potList = mutableListOf<Int>()
+
+
+    fun newBet(id: UUID, title: String, pot: Int) {
+
+        idList.add(id)
+        titleList.add(title)
+        potList.add(pot)
+
+    }
+
+    fun getPot(id: UUID): Int{
+        val i = idList.indexOf(id)
+        return potList[i]
+    }
+    fun getTitle(id: UUID): String {
+        val i = idList.indexOf(id)
+        return titleList[i]
+    }
+
+}
 
 object Wallet{
     private var money = 50
@@ -31,33 +67,44 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var signInBinding: SignInLayoutBinding
+
+    private lateinit var auth: FirebaseAuth
+
+    private fun checkUser(): Boolean {
+        val firebaseUser = auth.currentUser
+        return firebaseUser != null
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        setSupportActionBar(binding.appBarMain.toolbar)
-
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Notifications", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        auth = FirebaseAuth.getInstance()
+        if(!checkUser()){
+            startActivity(Intent(this, SignIn::class.java))
         }
-
-
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_wallet, R.id.nav_room, R.id.bet_list
-            ), drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        else{
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+            setSupportActionBar(binding.appBarMain.toolbar)
+            binding.appBarMain.fab.setOnClickListener { view ->
+                Snackbar.make(view, "Notifications", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+            }
+            val drawerLayout: DrawerLayout = binding.drawerLayout
+            val navView: NavigationView = binding.navView
+            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            // Passing each menu ID as a set of Ids because each
+            // menu should be considered as top level destinations.
+            appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.nav_home, R.id.nav_wallet, R.id.nav_room, R.id.bet_list, R.id.account, R.id.friend_list
+                ), drawerLayout
+            )
+            setupActionBarWithNavController(navController, appBarConfiguration)
+            navView.setupWithNavController(navController)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -11,9 +11,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.cooper.android.easybet.Bet
 import com.cooper.android.easybet.MainActivity
+import com.cooper.android.easybet.R
 import com.cooper.android.easybet.Wallet
 import com.cooper.android.easybet.databinding.FragmentHomeBinding
+import org.w3c.dom.Text
 
 
 class HomeFragment : Fragment() {
@@ -23,10 +26,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var pub1: Button
-    private lateinit var pub2: Button
-    private lateinit var pub3: Button
-    private lateinit var pub4: Button
+    private lateinit var username: TextView
 
 
     override fun onCreateView(
@@ -36,38 +36,14 @@ class HomeFragment : Fragment() {
     ): View {
 
 
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        pub1 = binding.pubBet1
-        pub2 = binding.pubBet2
-        pub3 = binding.pubBet3
-        pub4 = binding.pubBet4
-
-
-        pub1.setOnClickListener{
-            val intent = Intent(activity , pubBet1::class.java)
-            startActivity(intent)
-        }
-
-        pub2.setOnClickListener{
-            val intent = Intent(activity, pubBet2::class.java)
-            startActivity(intent)
-        }
-
-        pub3.setOnClickListener{
-            val intent = Intent(activity, pubBet3::class.java)
-            startActivity(intent)
-        }
-        pub4.setOnClickListener {
-            val intent = Intent(activity, pubBet4::class.java)
-            startActivity(intent)
-        }
-
+        val nav = inflater.inflate(R.layout.nav_header_main, container, false)
+        username = nav.findViewById(R.id.username_text)
+        username.setText("test")
         return root
+
+
     }
 
     override fun onDestroyView() {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cooper.android.easybet">
-
+<uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,22 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyBet">
+
+        <activity android:name=".SignIn"/>
         <activity
             android:name=".Bet"
             android:exported="false"
             />
-        <activity
-            android:name=".ui.home.pubBet4"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.pubBet3"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.pubBet2"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.pubBet1"
-            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

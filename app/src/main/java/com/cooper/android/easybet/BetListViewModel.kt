@@ -3,12 +3,16 @@ package com.cooper.android.easybet
 import androidx.lifecycle.ViewModel
 
 class BetListViewModel:ViewModel() {
-    val bets = mutableListOf<Bets>()
+    var bets = mutableListOf<Bets>()
+
+
     init {
-        for (i in 0 until 10){
+
+        for(i in 0 until BetList.idList.size){
             val bet = Bets()
-            bet.title = "Bet #$i"
-            bet.pot = 0
+            bet.id = BetList.idList[i]
+            bet.pot = BetList.getPot(BetList.idList[i])
+            bet.title = BetList.getTitle(BetList.idList[i])
             bets += bet
         }
     }
