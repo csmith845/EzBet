@@ -9,7 +9,7 @@ class GalleryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
 
-        value = "$" + Wallet.balance().toString()
+        value = "$" + Wallet.getBal().toString()
     }
     val text: LiveData<String> = _text
 }

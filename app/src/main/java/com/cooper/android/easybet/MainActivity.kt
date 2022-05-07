@@ -50,18 +50,7 @@ object BetList{
 
 }
 
-object Wallet{
-    private var money = 50
-    fun withdraw(amount: Int){
-        money -= amount
-    }
-    fun credit(amount: Int){
-        money += amount
-    }
-    fun balance(): Int {
-        return money
-    }
-}
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -79,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Wallet.getBal()
 
         auth = FirebaseAuth.getInstance()
         if(!checkUser()){
