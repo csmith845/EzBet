@@ -16,7 +16,7 @@ object Wallet{
     fun getBal(): Long{
         db.get().addOnSuccessListener {
             if (it.exists()){
-                dbBal = it.value as Long
+                dbBal = it.child("wallet").value as Long
                 Log.i(TAG,"WALLET BAL IS $dbBal")
             }
         }
