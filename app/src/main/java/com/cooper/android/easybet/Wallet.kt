@@ -1,6 +1,7 @@
 package com.cooper.android.easybet
 
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -25,5 +26,21 @@ object Wallet{
         }
         return bal
 
+    }
+    fun withdrawal(amount:Int){
+        if(amount>bal){
+            return
+        }else{
+            bal -= amount
+            db.child("wallet").setValue(bal)
+            dbBal = getBal()
+            bal = dbBal
+        }
+    }
+    fun credit(amount:Int){
+        bal += amount
+        db.child("wallet").setValue(bal)
+        dbBal = getBal()
+        bal = dbBal
     }
 }
