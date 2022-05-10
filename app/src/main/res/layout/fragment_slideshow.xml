@@ -27,14 +27,16 @@
         android:id="@+id/pot_init"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
+        android:autofillHints=""
         android:hint="@string/bet_screen"
         android:inputType="phone"
+        android:textAlignment="center"
+
+
         app:layout_constraintBottom_toTopOf="@+id/new_room"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/condition"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/condition" />
 
     <Button
         android:id="@+id/new_room"
@@ -59,5 +61,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pot_init"
         android:autofillHints=""
-        android:inputType="text" />
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/date_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="datetime"
+        app:layout_constraintBottom_toTopOf="@+id/add_friend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pot_init"
+        android:autofillHints="" />
 </androidx.constraintlayout.widget.ConstraintLayout>

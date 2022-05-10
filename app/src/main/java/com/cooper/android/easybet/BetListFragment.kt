@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 class BetListFragment:Fragment() {
 
     private lateinit var betRecyclerView: RecyclerView
+    private lateinit var refresh: Button
 
     private val betListViewModel:BetListViewModel by lazy {
         ViewModelProvider(this).get(BetListViewModel::class.java)
@@ -32,6 +34,10 @@ class BetListFragment:Fragment() {
 
         betRecyclerView = view.findViewById(R.id.bet_recycler_view) as RecyclerView
         betRecyclerView.layoutManager = LinearLayoutManager(context)
+        refresh = view.findViewById(R.id.roomRefresh)
+        refresh.setOnClickListener{
+            updateUi()
+        }
         updateUi()
         return view
     }

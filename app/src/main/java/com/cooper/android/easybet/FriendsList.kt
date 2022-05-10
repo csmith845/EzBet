@@ -19,7 +19,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.currentCoroutineContext
 
-private const val Tag = "friends"
+const val Tag = "friends"
 class FriendsList : Fragment(){
 
     private lateinit var friendRecycler: RecyclerView
