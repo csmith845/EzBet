@@ -33,6 +33,7 @@ class FriendsList : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.friends_list, container, false)
         friendRecycler = view.findViewById(R.id.friend_recycler) as RecyclerView
         friendRecycler.layoutManager = LinearLayoutManager(context)

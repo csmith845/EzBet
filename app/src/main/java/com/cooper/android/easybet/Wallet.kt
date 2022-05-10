@@ -12,13 +12,12 @@ object Wallet{
     private var bal : Long = 0
     private var dbBal : Long = 0
     private val uid = Firebase.auth.currentUser!!.uid
-    private val db = Firebase.database.reference.child("users/$uid/wallet")
+    private val db = Firebase.database.reference.child("users/$uid")
 
     fun getBal(): Long{
         db.get().addOnSuccessListener {
             if (it.exists()){
-                val temp: String = it.value.toString()
-                dbBal = temp.toLong()
+                dbBal = it.child("wallet").value as Long
                 Log.i(TAG,"WALLET BAL IS $dbBal")
             }
         }

@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Wallet.getBal()
+
 
         auth = FirebaseAuth.getInstance()
         if(!checkUser()){
@@ -81,7 +81,9 @@ class MainActivity : AppCompatActivity() {
             binding.appBarMain.fab.setOnClickListener { view ->
                 Snackbar.make(view, "Notifications", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+
             }
+
             val drawerLayout: DrawerLayout = binding.drawerLayout
             val navView: NavigationView = binding.navView
             val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -94,6 +96,7 @@ class MainActivity : AppCompatActivity() {
             )
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
+            Wallet.getBal()
         }
     }
 
