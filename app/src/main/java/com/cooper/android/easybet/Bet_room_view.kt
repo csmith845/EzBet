@@ -33,8 +33,11 @@ class Bet_room_view: AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val pot = intent.getIntExtra("pot", 0)
         val uid1 = intent.getStringExtra("UserID1")
+        val uid2 = intent.getStringArrayExtra("UserID2")
         id.setText(title)
-        potdisplay.setText("$"+pot.toString())
+        val potstring = "$$pot"
+
+        potdisplay.setText(potstring)
 
         closeButton = findViewById(R.id.closeButton)
         closeButton.setOnClickListener{

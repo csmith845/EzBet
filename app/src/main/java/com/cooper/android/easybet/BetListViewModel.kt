@@ -32,6 +32,8 @@ class BetListViewModel:ViewModel() {
                     var pot = 0
                     var id: String
                     var title = ""
+                    var friend1 = ""
+                    var friend2 = ""
                     val roomcount = activeRoomId.size
 
                     for (i in 0 until roomcount) {
@@ -47,11 +49,19 @@ class BetListViewModel:ViewModel() {
                                     } else if (i.key == "title") {
                                         title = i.value as String
                                     }
+                                    else if (i.key == "UserId1"){
+                                        friend1 = i.value as String
+                                    }
+                                    else if (i.key == "userId2"){
+                                        friend2 = i.value as String
+                                    }
                                 }
                                 val bet = Bets()
                                 bet.id = UUID.randomUUID()
                                 bet.pot = pot
                                 bet.title = title
+                                bet.friend1 = friend1
+                                bet.friend2 = friend2
                                 bets += bet
                             }
                         }

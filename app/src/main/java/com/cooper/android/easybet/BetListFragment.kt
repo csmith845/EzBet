@@ -50,21 +50,18 @@ class BetListFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         updateUi(betListViewModel.bets)
     }
-    private fun onRoomSelected(title: String, pot: Int,UserID1:String,room_id:String){
+    private fun onRoomSelected(title: String, pot: Int,UserID1:String, UserID2: String, room_id:String){
 
         val intent = Intent(activity, Bet_room_view::class.java)
         intent.putExtra("room_id",room_id)
         intent.putExtra("title", title)
         intent.putExtra("pot", pot)
         intent.putExtra("UserID1", UserID1)
+        intent.putExtra("UserID2", UserID2)
 
         startActivity(intent)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.bet_room, menu)
-    }
 
     private fun updateUi(bets: MutableList<Bets>) {
 
@@ -87,7 +84,7 @@ class BetListFragment:Fragment() {
         }
 
         override fun onClick(v: View?) {
-            onRoomSelected(this.bet.title, this.bet.pot,this.bet.friend1,this.bet.id.toString())
+            onRoomSelected(this.bet.title, this.bet.pot,this.bet.friend1, this.bet.friend2, this.bet.id.toString())
         }
     }
 
