@@ -69,7 +69,7 @@ class SlideshowFragment : Fragment() {
 
             val potString = pot.text.toString()
             val id: UUID = UUID.randomUUID()
-            if(conditionString != "" && potString != ""){
+            if(conditionString != "" && potString != "" && email !=""){
 
                 database.child("Room").child(id.toString()).child("title").setValue(conditionString)
                 database.child("Room").child(id.toString()).child("pot").setValue(potString)

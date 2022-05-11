@@ -8,4 +8,5 @@ import com.google.firebase.ktx.Firebase
 class FriendListViewModel : ViewModel() {
     var friends = mutableListOf<Friends>()
 
+
 }

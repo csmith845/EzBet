@@ -9,6 +9,7 @@ import com.cooper.android.easybet.Friends
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+
 const val Tag = "room"
 class SlideshowViewModel : ViewModel() {
 
@@ -16,6 +17,7 @@ class SlideshowViewModel : ViewModel() {
         value = "Create betting room"
     }
     val text: LiveData<String> = _text
+
 
 
 }

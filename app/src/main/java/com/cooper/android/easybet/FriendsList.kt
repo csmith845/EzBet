@@ -24,22 +24,12 @@ class FriendsList : Fragment(){
 
     private lateinit var friendRecycler: RecyclerView
     private lateinit var refresh: Button
-    private lateinit var friendsList :MutableList<String>
+    object LocalFriendList{
+        var friendsList :MutableList<Friends> = arrayListOf()
+    }
 
     private val friendListViewModel:FriendListViewModel by lazy {
         ViewModelProvider(this).get(FriendListViewModel::class.java)
-    }
-    fun getFriends():List<String>{
-        val friendRef = Firebase.database.reference.child("users").child(curuser).child("friends")
-        friendRef.get().addOnSuccessListener {
-            val friend = it.children
-            friend.forEach { i ->
-                if(!(friendListViewModel.friends.contains(Friends(i.key.toString(), i.value.toString())))) {
-                    friendsList.add(i.value.toString())
-                }
-            }
-        }
-        return friendsList
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,15 +49,20 @@ class FriendsList : Fragment(){
     }
 
     private var curuser = Firebase.auth.currentUser!!.uid
-    private fun updateUi() {
+    fun updateUi() {
         val friendRef = Firebase.database.reference.child("users").child(curuser).child("friends")
         friendRef.get().addOnSuccessListener {
             val friend = it.children
             friend.forEach { i ->
                 if(!(friendListViewModel.friends.contains(Friends(i.key.toString(), i.value.toString())))) {
                         friendListViewModel.friends += Friends(i.key.toString(), i.value.toString())
+                        LocalFriendList.friendsList.add(Friends(i.key.toString(),i.value.toString()))
                 }
             }
+            for (i in 0 until LocalFriendList.friendsList.size){
+                println(LocalFriendList.friendsList[i].email)
+            }
+
         }
         val friends = friendListViewModel.friends
         val adapter = FriendAdapter(friends)
