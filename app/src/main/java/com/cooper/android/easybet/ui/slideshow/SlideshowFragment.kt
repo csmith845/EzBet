@@ -56,16 +56,10 @@ class SlideshowFragment : Fragment() {
         newRoom.setOnClickListener(){
             val conditionString = condition.text.toString()
             val email = addFriend.text.toString()
-            val size = friendListViewModel.friends.size
+            val size = FriendsList.LocalFriendList.friendsList.size
             Log.d(tag, "friend size $size")
 
-            for(i in 0 until size){
-                if(friendListViewModel.friends[i].email == email){
-                    val friendKey = friendListViewModel.friends[i].id
-                    Log.d(tag, "friend key $friendKey")
-                    database.child("users").child(friendKey).child("rooms").child(id.toString()).setValue(id.toString())
-                }
-            }
+
 
             val potString = pot.text.toString()
             val id: UUID = UUID.randomUUID()
@@ -73,9 +67,17 @@ class SlideshowFragment : Fragment() {
 
                 database.child("Room").child(id.toString()).child("title").setValue(conditionString)
                 database.child("Room").child(id.toString()).child("pot").setValue(potString)
-                database.child("Room").child(id.toString()).child("UserID").setValue(userID)
-                database.child("users").child(userID).child("rooms").child(id.toString()).setValue(id.toString())
+                database.child("Room").child(id.toString()).child("UserID1").setValue(userID)
 
+                database.child("users").child(userID).child("rooms").child(id.toString()).setValue(id.toString())
+                for(i in 0 until size){
+                    if(FriendsList.LocalFriendList.friendsList[i].email == email){
+                        val friendKey = FriendsList.LocalFriendList.friendsList[i].id
+                        Log.d(tag, "friend key $friendKey")
+                        database.child("users").child(friendKey).child("rooms").child(id.toString()).setValue(id.toString())
+                        database.child("Room").child(id.toString()).child("userID2").setValue(friendKey)
+                    }
+                }
 
 
         }
