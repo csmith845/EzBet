@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
@@ -21,7 +19,18 @@ class Bet_room_view: AppCompatActivity() {
     private lateinit var potdisplay: TextView
     private lateinit var closeButton:Button
     private var uid = Firebase.auth.currentUser!!.uid
-    private var payoutFlag = 0
+
+    private fun findFriend(email: String):String{
+        var friendId = ""
+        val size = FriendsList.LocalFriendList.friendsList.size
+        for(i in 0 until size){
+            if(FriendsList.LocalFriendList.friendsList[i].email == email){
+                friendId = FriendsList.LocalFriendList.friendsList[i].id
+                Log.d(TAG, "friend key $friendId")
+            }
+        }
+        return friendId
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,15 +42,23 @@ class Bet_room_view: AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val pot = intent.getIntExtra("pot", 0)
         val uid1 = intent.getStringExtra("UserID1")
-        val uid2 = intent.getStringArrayExtra("UserID2")
+        val uid2 = intent.getStringExtra("UserID2")
         id.setText(title)
-        val potstring = "$$pot"
-
-        potdisplay.setText(potstring)
+        potdisplay.setText("$"+pot.toString())
 
         closeButton = findViewById(R.id.closeButton)
         closeButton.setOnClickListener{
-            if (payoutFlag == 0){
+
+                val popup:PopupMenu = PopupMenu(this,closeButton)
+                popup.menuInflater.inflate(R.menu.pop_menu,popup.menu)
+                popup.setOnMenuItemClickListener { item->
+                    when(item.itemId){
+                        R.id.friend1 ->
+
+
+
+
+                }
 
             }
         }
