@@ -49,15 +49,15 @@ class BetListViewModel:ViewModel() {
                                     } else if (i.key == "title") {
                                         title = i.value as String
                                     }
-                                    else if (i.key == "UserId1"){
+                                    else if (i.key == "UserID1"){
                                         friend1 = i.value as String
                                     }
-                                    else if (i.key == "userId2"){
+                                    else if (i.key == "userID2"){
                                         friend2 = i.value as String
                                     }
                                 }
                                 val bet = Bets()
-                                bet.id = UUID.randomUUID()
+                                bet.id = UUID.fromString(id)
                                 bet.pot = pot
                                 bet.title = title
                                 bet.friend1 = friend1
