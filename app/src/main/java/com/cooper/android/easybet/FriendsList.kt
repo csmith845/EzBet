@@ -24,6 +24,9 @@ class FriendsList : Fragment(){
 
     private lateinit var friendRecycler: RecyclerView
     private lateinit var refresh: Button
+    object LocalFriendList{
+        var friendsList :MutableList<Friends> = arrayListOf()
+    }
 
     private val friendListViewModel:FriendListViewModel by lazy {
         ViewModelProvider(this).get(FriendListViewModel::class.java)

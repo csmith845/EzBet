@@ -46,7 +46,7 @@ class SlideshowFragment : Fragment() {
         condition = view.findViewById(R.id.condition)
         pot = view.findViewById(R.id.pot_init)
         addFriend = view.findViewById(R.id.add_friend)
-        dateTime = view.findViewById(R.id.date_time)
+
 
 
 
