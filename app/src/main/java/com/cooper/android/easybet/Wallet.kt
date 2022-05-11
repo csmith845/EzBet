@@ -27,8 +27,9 @@ object Wallet{
         return bal
 
     }
-    fun withdrawal(amount:Int){
-        if(amount>bal){
+    fun withdrawal( amount:Int){
+
+        if(amount> bal){
             return
         }else{
             bal -= amount

@@ -50,12 +50,14 @@ class BetListFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         updateUi(betListViewModel.bets)
     }
-    private fun onRoomSelected(title: String, pot: Int){
+    private fun onRoomSelected(title: String, pot: Int,UserID1:String,room_id:String){
 
         val intent = Intent(activity, Bet_room_view::class.java)
-
+        intent.putExtra("room_id",room_id)
         intent.putExtra("title", title)
         intent.putExtra("pot", pot)
+        intent.putExtra("UserID1", UserID1)
+
         startActivity(intent)
     }
 
@@ -85,7 +87,7 @@ class BetListFragment:Fragment() {
         }
 
         override fun onClick(v: View?) {
-            onRoomSelected(this.bet.title, this.bet.pot)
+            onRoomSelected(this.bet.title, this.bet.pot,this.bet.friend1,this.bet.id.toString())
         }
     }
 
