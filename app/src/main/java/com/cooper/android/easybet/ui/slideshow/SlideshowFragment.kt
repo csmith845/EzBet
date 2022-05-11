@@ -22,14 +22,15 @@ import java.util.*
 class SlideshowFragment : Fragment() {
 
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private lateinit var newRoom: Button
     private lateinit var condition: EditText
     private lateinit var pot: EditText
     private lateinit var friendSelector: Spinner
     private lateinit var dateTime: EditText
     private lateinit var addFriend: EditText
+    private lateinit var friend: String
+
 
     private val friendListViewModel:FriendListViewModel by lazy {
         ViewModelProvider(this).get(FriendListViewModel::class.java)
@@ -63,27 +64,74 @@ class SlideshowFragment : Fragment() {
 
             val potString = pot.text.toString()
             val id: UUID = UUID.randomUUID()
-            if(conditionString != "" && potString != "" && email !=""){
+            if(conditionString != "" && potString != "" && email !="" ) {
 
-                database.child("Room").child(id.toString()).child("title").setValue(conditionString)
-                database.child("Room").child(id.toString()).child("pot").setValue(potString)
-                database.child("Room").child(id.toString()).child("UserID1").setValue(userID)
 
-                database.child("users").child(userID).child("rooms").child(id.toString()).setValue(id.toString())
-                for(i in 0 until size){
-                    if(FriendsList.LocalFriendList.friendsList[i].email == email){
+
+
+
+                for (i in 0 until size) {
+                    if (FriendsList.LocalFriendList.friendsList[i].email == email) {
                         val friendKey = FriendsList.LocalFriendList.friendsList[i].id
                         Log.d(tag, "friend key $friendKey")
-                        database.child("users").child(friendKey).child("rooms").child(id.toString()).setValue(id.toString())
-                        database.child("Room").child(id.toString()).child("userID2").setValue(friendKey)
+                        val totalpot = potString.toInt() * 2
+                        withdrawFriend(friendKey, potString.toInt())
+                        withdrawMe(potString.toInt())
+                        database.child("users").child(friendKey).child("rooms").child(id.toString())
+                            .setValue(id.toString())
+                        database.child("Room").child(id.toString()).child("userID2")
+                            .setValue(friendKey)
+                        database.child("Room").child(id.toString()).child("title").setValue(conditionString)
+                        database.child("Room").child(id.toString()).child("pot").setValue(totalpot)
+                        database.child("Room").child(id.toString()).child("UserID1").setValue(userID)
+
+                        database.child("users").child(userID).child("rooms").child(id.toString())
+                            .setValue(id.toString())
                     }
                 }
-
-
-        }
+            }else{
+            Toast.makeText(activity, "insufficent funds", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view
+    }
+    private fun withdrawMe(amount: Int){
+        var bal = 0
+        val user = Firebase.auth.currentUser!!.uid
+        val myWallet = Firebase.database.reference.child("users/$user/wallet")
+        myWallet.get().addOnSuccessListener {
+            val temp = it.value.toString()
+            bal = temp.toInt()
+            bal -= amount
+            myWallet.setValue(bal)
+        }
+    }
+    private fun withdrawFriend(ID: String, amount: Int){
+        var bal = 0
+        val wallet = Firebase.database.reference.child("users/$ID/wallet")
+            wallet.get().addOnSuccessListener {
+            val temp = it.value.toString()
+            bal = temp.toInt()
+                Log.d(Tag, "withdraw bal = $bal")
+                Log.d(Tag, "withdraw bal = $bal")
+                bal -= amount
+                Log.d(Tag, "new bal = $bal")
+                wallet.setValue(bal)
+        }
+
+
+    }
+    private fun findFriend(email: String):String{
+        var friendId = ""
+        val size = FriendsList.LocalFriendList.friendsList.size
+        for(i in 0 until size){
+            if(FriendsList.LocalFriendList.friendsList[i].email == email){
+                friendId = FriendsList.LocalFriendList.friendsList[i].id
+                Log.d(tag, "friend key $friendId")
+            }
+        }
+        return friendId
     }
 
     override fun onDestroyView() {
