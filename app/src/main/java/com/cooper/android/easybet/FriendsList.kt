@@ -24,7 +24,7 @@ class FriendsList : Fragment(){
 
     private lateinit var friendRecycler: RecyclerView
     private lateinit var refresh: Button
-    lateinit var friendsList :MutableList<String>
+    private lateinit var friendsList :MutableList<String>
 
     private val friendListViewModel:FriendListViewModel by lazy {
         ViewModelProvider(this).get(FriendListViewModel::class.java)
