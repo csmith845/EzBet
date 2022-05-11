@@ -18,6 +18,8 @@ class Bet_room_view: AppCompatActivity() {
     private lateinit var id: TextView
     private lateinit var potdisplay: TextView
     private lateinit var closeButton:Button
+    private lateinit var friend1: TextView
+    private lateinit var friend2: TextView
     private var uid = Firebase.auth.currentUser!!.uid
 
     private fun findFriend(email: String):String{
@@ -36,6 +38,7 @@ class Bet_room_view: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bet_room)
         id = findViewById(R.id.bet_name)
+
         potdisplay = findViewById(R.id.pot_display)
         val room_id = intent.getStringExtra("room_id")
         val key = intent.getStringExtra("key")
@@ -48,25 +51,13 @@ class Bet_room_view: AppCompatActivity() {
 
         closeButton = findViewById(R.id.closeButton)
         closeButton.setOnClickListener{
+            val popup:PopupMenu = PopupMenu(this,closeButton)
+            popup.menuInflater.inflate(R.menu.pop_menu,popup.menu)
+            val p = popup.menu
+            p.add(uid1)
+            p.add(uid2)
+            popup.show()
 
-                val popup:PopupMenu = PopupMenu(this,closeButton)
-                popup.menuInflater.inflate(R.menu.pop_menu,popup.menu)
-                popup.setOnMenuItemClickListener { item->
-                    when(item.itemId){
-                        R.id.friend1 ->
-
-
-
-
-                }
-
-            }
         }
-
-
-
-
     }
-
-
 }
