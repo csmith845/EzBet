@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.cooper.android.easybet.ui.home.HomeFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -43,6 +44,7 @@ class Bet_room_view: AppCompatActivity() {
             bal += amount
 
             wallet.setValue(bal)
+            Wallet.getBal()
         }
 
 
@@ -77,17 +79,22 @@ class Bet_room_view: AppCompatActivity() {
                 if (item.title == findFriend(uid1.toString())) {
                     winner = uid1.toString()
                     Log.d(Tag, "winner fr1$winner")
+                    db.child("Room").child(room_id.toString()).removeValue()
+                    db.database.reference.child("users").child(uid1.toString()).child("rooms").child(room_id.toString()).removeValue()
+                    db.database.reference.child("users").child(uid2.toString()).child("rooms").child(room_id.toString()).removeValue()
                 }
                 else{
 
                     winner = uid2.toString()
                     Log.d(Tag, "winner fr2 $winner")
+                    db.child("Room").child(room_id.toString()).removeValue()
+                    db.database.reference.child("users").child(uid1.toString()).child("rooms").child(room_id.toString()).removeValue()
+                    db.database.reference.child("users").child(uid2.toString()).child("rooms").child(room_id.toString()).removeValue()
                 }
                 winning(winner, pot)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
 
-                db.child("Room").child(room_id.toString()).removeValue()
-                db.database.reference.child("users").child(uid1.toString()).child("rooms").child(room_id.toString()).removeValue()
-                db.database.reference.child("users").child(uid2.toString()).child("rooms").child(room_id.toString()).removeValue()
                 return@setOnMenuItemClickListener true
             }
 

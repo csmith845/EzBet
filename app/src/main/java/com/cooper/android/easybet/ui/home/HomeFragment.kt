@@ -26,7 +26,7 @@ private const val Tag = "home"
 class HomeFragment : Fragment() {
     private lateinit var friendButton: Button
     private lateinit var emailSearch: EditText
-    private lateinit var friendRecycler: RecyclerView
+
     private lateinit var curuser: String
     private var _binding: FragmentHomeBinding? = null
 

@@ -90,7 +90,7 @@ class SlideshowFragment : Fragment() {
                     }
                 }
             }else{
-            Toast.makeText(activity, "insufficent funds", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "incorrect email", Toast.LENGTH_SHORT).show()
             }
         }
 
