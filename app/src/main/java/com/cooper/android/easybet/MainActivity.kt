@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.*
+import com.cooper.android.easybet.FriendsList
 
 
 object BetList{
@@ -97,6 +98,8 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
             Wallet.getBal()
+            
+
         }
     }
 

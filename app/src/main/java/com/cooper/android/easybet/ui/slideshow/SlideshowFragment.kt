@@ -46,36 +46,38 @@ class SlideshowFragment : Fragment() {
         condition = view.findViewById(R.id.condition)
         pot = view.findViewById(R.id.pot_init)
         addFriend = view.findViewById(R.id.add_friend)
-
+        dateTime = view.findViewById(R.id.date_time)
 
 
 
         val user = Firebase.auth.currentUser
         val userID = user!!.uid
-        val Id: UUID = UUID.randomUUID()
+
         newRoom.setOnClickListener(){
             val conditionString = condition.text.toString()
             val email = addFriend.text.toString()
-            val size = friendListViewModel.friends.size
+            val size = FriendsList.LocalFriendList.friendsList.size
             Log.d(tag, "friend size $size")
 
-            for(i in 0 until size){
-                if(friendListViewModel.friends[i].email == email){
-                    val friendKey = friendListViewModel.friends[i].id
-                    Log.d(tag, "friend key $friendKey")
-                    database.child("users").child(friendKey).child("rooms").child(Id.toString()).setValue(Id.toString())
-                }
-            }
+
 
             val potString = pot.text.toString()
+            val id: UUID = UUID.randomUUID()
+            if(conditionString != "" && potString != "" && email !=""){
 
-            if(conditionString != "" && potString != ""){
+                database.child("Room").child(id.toString()).child("title").setValue(conditionString)
+                database.child("Room").child(id.toString()).child("pot").setValue(potString)
+                database.child("Room").child(id.toString()).child("UserID1").setValue(userID)
 
-                database.child("Room").child(Id.toString()).child("title").setValue(conditionString)
-                database.child("Room").child(Id.toString()).child("pot").setValue(potString)
-                database.child("Room").child(Id.toString()).child("UserID").setValue(userID)
-                database.child("users").child(userID).child("rooms").child(Id.toString()).setValue(Id.toString())
-
+                database.child("users").child(userID).child("rooms").child(id.toString()).setValue(id.toString())
+                for(i in 0 until size){
+                    if(FriendsList.LocalFriendList.friendsList[i].email == email){
+                        val friendKey = FriendsList.LocalFriendList.friendsList[i].id
+                        Log.d(tag, "friend key $friendKey")
+                        database.child("users").child(friendKey).child("rooms").child(id.toString()).setValue(id.toString())
+                        database.child("Room").child(id.toString()).child("userID2").setValue(friendKey)
+                    }
+                }
 
 
         }
