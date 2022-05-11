@@ -24,9 +24,22 @@ class FriendsList : Fragment(){
 
     private lateinit var friendRecycler: RecyclerView
     private lateinit var refresh: Button
+    lateinit var friendsList :MutableList<String>
 
     private val friendListViewModel:FriendListViewModel by lazy {
         ViewModelProvider(this).get(FriendListViewModel::class.java)
+    }
+    fun getFriends():List<String>{
+        val friendRef = Firebase.database.reference.child("users").child(curuser).child("friends")
+        friendRef.get().addOnSuccessListener {
+            val friend = it.children
+            friend.forEach { i ->
+                if(!(friendListViewModel.friends.contains(Friends(i.key.toString(), i.value.toString())))) {
+                    friendsList.add(i.value.toString())
+                }
+            }
+        }
+        return friendsList
     }
     override fun onCreateView(
         inflater: LayoutInflater,

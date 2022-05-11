@@ -10,6 +10,7 @@ class Bet : AppCompatActivity() {
     private lateinit var total: TextView
     private lateinit var entry: EditText
     private lateinit var bet_button: Button
+
     private lateinit var string: String
 
 
