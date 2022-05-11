@@ -26,6 +26,7 @@ class FriendsList : Fragment(){
     private lateinit var refresh: Button
     object LocalFriendList{
         var friendsList :MutableList<Friends> = arrayListOf()
+        //fun listP
     }
 
     private val friendListViewModel:FriendListViewModel by lazy {
@@ -48,14 +49,15 @@ class FriendsList : Fragment(){
         return view
     }
 
+
     private var curuser = Firebase.auth.currentUser!!.uid
+
     fun updateUi() {
         val friendRef = Firebase.database.reference.child("users").child(curuser).child("friends")
         friendRef.get().addOnSuccessListener {
             val friend = it.children
             friend.forEach { i ->
-                if(!(friendListViewModel.friends.contains(Friends(i.key.toString(), i.value.toString())))) {
-                        friendListViewModel.friends += Friends(i.key.toString(), i.value.toString())
+                if(!(LocalFriendList.friendsList.contains(Friends(i.key.toString(), i.value.toString())))) {
                         LocalFriendList.friendsList.add(Friends(i.key.toString(),i.value.toString()))
                 }
             }
@@ -64,7 +66,7 @@ class FriendsList : Fragment(){
             }
 
         }
-        val friends = friendListViewModel.friends
+        val friends = LocalFriendList.friendsList
         val adapter = FriendAdapter(friends)
         friendRecycler.adapter = adapter
     }
