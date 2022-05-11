@@ -30,11 +30,13 @@ class BetListViewModel:ViewModel() {
                 publicRooms.forEach { x ->
 
                     var pot = 0
+                    var id: String
                     var title = ""
                     val roomcount = activeRoomId.size
 
                     for (i in 0 until roomcount) {
                         if (activeRoomId[i] == x.key) {
+                            id = x.key!!
                             Log.d(Tag, "active room found ${activeRoomId[i]}")
                             roomRef.child(activeRoomId[i]).get().addOnSuccessListener {
                                 it.children.forEach { i ->
@@ -47,6 +49,7 @@ class BetListViewModel:ViewModel() {
                                     }
                                 }
                                 val bet = Bets()
+                                bet.id = UUID.randomUUID()
                                 bet.pot = pot
                                 bet.title = title
                                 bets += bet

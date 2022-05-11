@@ -53,6 +53,7 @@ class FriendsList : Fragment(){
             friend.forEach { i ->
                 if(!(friendListViewModel.friends.contains(Friends(i.key.toString(), i.value.toString())))) {
                         friendListViewModel.friends += Friends(i.key.toString(), i.value.toString())
+                    Log.d(Tag, "email ${i.value.toString()}")
                 }
             }
         }
@@ -76,6 +77,7 @@ class FriendsList : Fragment(){
             val friend = friends[position]
             holder.apply {
                 titletextview.text = friend.email
+                Log.d(Tag, "email ${friend.email}")
             }
         }
     }
