@@ -1,26 +1,31 @@
 package com.cooper.android.easybet
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-
 class BetListFragment:Fragment() {
 
     private lateinit var betRecyclerView: RecyclerView
+    private lateinit var refresh: Button
+    private var adapter: BetAdapter? = BetAdapter(mutableListOf<Bets>())
 
     private val betListViewModel:BetListViewModel by lazy {
         ViewModelProvider(this).get(BetListViewModel::class.java)
     }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -32,22 +37,62 @@ class BetListFragment:Fragment() {
 
         betRecyclerView = view.findViewById(R.id.bet_recycler_view) as RecyclerView
         betRecyclerView.layoutManager = LinearLayoutManager(context)
-        updateUi()
+        refresh = view.findViewById(R.id.roomRefresh)
+        betRecyclerView.adapter = adapter
+        refresh.setOnClickListener{
+            updateUi(betListViewModel.bets)
+        }
+
         return view
     }
 
-    private fun updateUi() {
-        val bet = betListViewModel.bets
-        val adapter = BetAdapter(bet)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        updateUi(betListViewModel.bets)
+    }
+    private fun onRoomSelected(title: String, pot: Int,UserID1:String,UserID2:String, room_id:String){
+
+        val intent = Intent(activity, Bet_room_view::class.java)
+        intent.putExtra("room_id",room_id)
+        intent.putExtra("title", title)
+        intent.putExtra("pot", pot)
+        intent.putExtra("UserID1", UserID1)
+        intent.putExtra("UserID2",UserID2)
+
+        startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.bet_room, menu)
+    }
+
+    private fun updateUi(bets: MutableList<Bets>) {
+
+        val adapter = BetAdapter(bets)
         betRecyclerView.adapter = adapter
     }
 
-    private inner class BetHolder(view:View): RecyclerView.ViewHolder(view){
+    private inner class BetHolder(view:View): RecyclerView.ViewHolder(view), View.OnClickListener{
+        private lateinit var bet: Bets
+
         val titletextview: TextView =itemView.findViewById(R.id.bet_title)
         val pottextview:TextView = itemView.findViewById(R.id.pot_total)
+
+        init {itemView.setOnClickListener(this)}
+
+        fun bind(bet:Bets){
+            this.bet = bet
+            titletextview.text = this.bet.title
+            pottextview.text = this.bet.pot.toString()
+        }
+
+        override fun onClick(v: View?) {
+            onRoomSelected(this.bet.title, this.bet.pot,this.bet.friend1,this.bet.friend2,this.bet.id.toString())
+        }
     }
 
-    private inner class BetAdapter(val bets:List<Bets>):RecyclerView.Adapter<BetHolder>(){
+    private inner class BetAdapter(val bets: MutableList<Bets>):RecyclerView.Adapter<BetHolder>(){
         override fun getItemCount()=bets.size
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BetHolder {
             val view=layoutInflater.inflate(R.layout.bet_list_layout, parent, false)
@@ -56,10 +101,15 @@ class BetListFragment:Fragment() {
 
         override fun onBindViewHolder(holder: BetHolder, position: Int) {
             val bet = bets[position]
-            holder.apply {
-                titletextview.text = bet.title
-                pottextview.text = bet.pot.toString()
-            }
+            holder.bind(bet)
+
+        }
+    }
+
+    companion object {
+        fun newInstance(): BetListFragment {
+            return BetListFragment()
         }
     }
 }
+

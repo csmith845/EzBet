@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "196590227070",
+    "project_id": "easybet-d5d2e",
+    "storage_bucket": "easybet-d5d2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196590227070:android:44e8cf90f92dd523c5522f",
+        "android_client_info": {
+          "package_name": "com.cooper.android.easybet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196590227070-p84dr0npru1ap57lb6pj3up3svcavqrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCIztT_uEZZXSO4ho1sI-GDMyx-ogQy-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196590227070-p84dr0npru1ap57lb6pj3up3svcavqrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

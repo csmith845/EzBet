@@ -9,7 +9,14 @@
         android:id="@+id/bet_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"/>
+    <Button
+        android:id="@+id/roomRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/refresh"
+        android:layout_gravity="bottom"/>
 
 </FrameLayout>

@@ -1,36 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/GridLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="1"
-    android:rowCount="4"
-    android:orientation="horizontal"
-    tools:context=".ui.home.HomeFragment">>
+    tools:context=".ui.home.HomeFragment">
+
+    <EditText
+        android:id="@+id/email_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:hint="@string/enter_email_address"
+
+        app:layout_constraintBottom_toTopOf="@+id/friend_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/pubBet1"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:text="NFL" />
+        android:id="@+id/friend_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_friend"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/pubBet2"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:text="FIFA" />
-
-    <Button
-        android:id="@+id/pubBet3"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:text="MLB" />
-
-    <Button
-        android:id="@+id/pubBet4"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:text="World Events" />
-</GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

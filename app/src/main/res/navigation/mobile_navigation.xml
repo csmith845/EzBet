@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_room"
         android:name="com.cooper.android.easybet.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/create_room"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
@@ -28,4 +28,14 @@
         android:name= "com.cooper.android.easybet.BetListFragment"
         android:label="Bet list"
         tools:layout="@layout/bet_list_layout"/>
+    <fragment
+        android:id="@+id/account"
+        android:name="com.cooper.android.easybet.Account"
+        android:label="account"
+        tools:layout="@layout/account_layout"/>
+    <fragment
+        android:id="@+id/friend_list"
+        android:name = "com.cooper.android.easybet.FriendsList"
+        android:label="@string/friends_list"
+        tools:layout="@layout/friends_list"/>
 </navigation>

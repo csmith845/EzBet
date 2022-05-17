@@ -4,15 +4,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:padding="8dp"
+    android:background="@drawable/rectangle"
+
     >
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/bet_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text = "bet condition"/>
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/pot_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
